@@ -1,66 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Banking System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository contains a Laravel-based API for a banking system that supports deposit and withdrawal operations for Individual and Business users.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Introduction](#introduction)
+-   [Prerequisites](#prerequisites)
+-   [Setup](#setup)
+-   [API Endpoints](#api-endpoints)
+    -   [Create User](#create-user)
+    -   [Login](#login)
+    -   [View All Transactions and Balances](#view-all-transactions-and-balances)
+    -   [View Deposits](#view-deposits)
+    -   [Deposit](#deposit)
+    -   [View Withdrawals](#view-withdrawals)
+    -   [Withdrawal](#withdrawal)
+-   [Usage](#usage)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Introduction
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This API simulates a banking system with support for various types of transactions. It includes methods for user creation, login, deposit, and withdrawal. The system also applies fees and conditions as specified in the project requirements.
 
-## Learning Laravel
+## Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   XAMPP or a similar local server environment.
+-   Composer installed on your system.
+-   Postman or a similar API testing tool.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Setup
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1.  Clone this repository to your local environment:
 
-## Laravel Sponsors
+        ```shell
+        git clone https://github.com/asif-cse-kuet/Mediusware_Laravel_Project.git
+        ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2.  Navigate to the project directory:
 
-### Premium Partners
+    ```shell
+    cd Mediusware_Laravel_Project
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3.  Install the required dependencies using Composer:
 
-## Contributing
+    ```shell
+    composer install
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4.  Create a MySQL database for the project and update the `.env` file with your database credentials:
 
-## Code of Conduct
+    ```shell
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_database_username
+    DB_PASSWORD=your_database_password
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5.  Generate the application key:
 
-## Security Vulnerabilities
+    ```shell
+    php artisan key:generate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6.  Run database migrations to create the required tables:
 
-## License
+    ```shell
+    php artisan migrate
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7.  Start the development server:
+
+    ```shell
+    php artisan serve
+    ```
+
+## API Endpoints
+
+### Create User
+
+-   **Method**: POST
+-   **Endpoint**: `/api/users`
+-   **Request Body**:
+-   `name` (required): Name of the user.
+-   `account_type` (optional): Account type (Individual or Business). By default it will be Individual.
+-   `email` (required, unique): User's email.
+-   `password` (Optional): User's password. By default it will be a default password.
+-   `balance` (Optional): Initial balance. By default it will be 0.
+-   **Response**: JSON containing user details and a success message.
+
+### Login
+
+-   **Method**: POST
+-   **Endpoint**: `/api/login`
+-   **Request Body**:
+-   `email` (required): User's email.
+-   `password` (required): User's password.
+-   **Response**: JSON containing authentication token.
+
+### View All Transactions and Balances
+
+-   **Method**: GET
+-   **Endpoint**: `/api/`
+-   **Response**: JSON containing all transactions and current user balances.
+
+### View Deposits
+
+-   **Method**: GET
+-   **Endpoint**: `/api/deposit`
+-   **Response**: JSON containing all deposit transactions.
+
+### Deposit
+
+-   **Method**: POST
+-   **Endpoint**: `/api/deposit`
+-   **Request Body**:
+-   `user_id` (required): User's ID.
+-   `amount` (required): Amount to deposit.
+-   **Response**: JSON containing success message.
+
+### View Withdrawals
+
+-   **Method**: GET
+-   **Endpoint**: `/api/withdrawal`
+-   **Response**: JSON containing all withdrawal transactions.
+
+### Withdrawal
+
+-   **Method**: POST
+-   **Endpoint**: `/api/withdrawal`
+-   **Request Body**:
+-   `user_id` (required): User's ID.
+-   `amount` (required): Amount to withdraw.
+-   **Response**: JSON containing withdrawal details and updated balance.
+
+## Usage
+
+1. After setting up the project, use Postman or a similar tool to send API requests.
+2. Create a user using the `/api/users` endpoint.
+3. Login using the `/api/login` endpoint to obtain an authentication token.
+4. Use the provided endpoints to perform various transactions and view account details.
+
+---
+
+Please make sure to replace placeholders such as `your_database_name`, `your_database_username`, and `your_database_password` with your actual database information.
+
+This `README.md` file provides a step-by-step guide to set up and use the project, along with information about the available API endpoints and their inputs and outputs. It's crucial to ensure that all the prerequisites are met and each step is followed accurately for the project to work as expected.
+
+Feel free to update or modify this `README.md` file to suit your needs and project specifics.
+
+---

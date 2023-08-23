@@ -18,7 +18,7 @@ class UserController extends Controller
                 'email' => 'required|email|unique:users,email',
                 'account_type' => 'in:Individual,Business',
                 'balance' => 'numeric',
-                'name' => 'string',
+                'name' => 'required|string',
                 'password' => 'string',
             ]);
 
