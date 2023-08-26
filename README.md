@@ -138,7 +138,6 @@ This API simulates a banking system with support for various types of transactio
 ### Withdrawal Fee Condition
 
 -   Withdrawal fee 0.015%for Individual, 0.025% for Business
--   Withdrawal for individual in Friday is free
 -   Withdrawal upto 1K in single transaction is free
 -   Withdrawal upto 5k in single monthly transaction is free
 -   Decrease the withdrawal fee to 0.015% for Business accounts after a total withdrawal of 50K.
