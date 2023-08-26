@@ -32,7 +32,7 @@ This API simulates a banking system with support for various types of transactio
 1.  Clone this repository to your local environment:
 
     ```shell
-    git clone https://github.com/asif-cse-kuet/Mediusware_Laravel_Project.git
+    git clone https://github.com/asif-cse-kuet/Banking_System_API.git
     ```
 
 2.  Navigate to the project directory:
