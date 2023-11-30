@@ -38,7 +38,7 @@ This API simulates a banking system with support for various types of transactio
 2.  Navigate to the project directory:
 
     ```shell
-    cd Mediusware_Laravel_Project
+    cd Banking_System_API
     ```
 
 3.  Install the required dependencies using Composer:
@@ -135,12 +135,14 @@ This API simulates a banking system with support for various types of transactio
 -   `amount` (required): Amount to withdraw.
 -   **Response**: JSON containing withdrawal details and updated balance.
 
+
 ### Withdrawal Fee Condition
 
 -   Withdrawal fee 0.015%for Individual, 0.025% for Business
 -   Withdrawal upto 1K in single transaction is free
 -   Withdrawal upto 5k in single monthly transaction is free
 -   Decrease the withdrawal fee to 0.015% for Business accounts after a total withdrawal of 50K.
+
 
 ## Usage
 
@@ -151,10 +153,8 @@ This API simulates a banking system with support for various types of transactio
 
 ---
 
-Please make sure to replace placeholders such as `your_database_name`, `your_database_username`, and `your_database_password` with your actual database information.
+**Please make sure to replace placeholders such as `your_database_name`, `your_database_username`, and `your_database_password` with your actual database information.**
 
 This `README.md` file provides a step-by-step guide to set up and use the project, along with information about the available API endpoints and their inputs and outputs. It's crucial to ensure that all the prerequisites are met and each step is followed accurately for the project to work as expected.
-
-Feel free to update or modify this `README.md` file to suit your needs and project specifics.
 
 ---
